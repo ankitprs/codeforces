@@ -1,122 +1,104 @@
-let c , ar=[];
-$.ajax({
-  method:'GET',
-  url:"https://codeforces.com/api/user.ratedList?activeOnly=true",
-  success:function(response){
-      ar=response.result;
-      console.log(response)
-      c = Object.keys(response.result).length;
-      let table=document.getElementById("mytable");
-      table.innerHTML+="";
-      let tr="";
-      for(let i=0;i<10;i++){
-        tr+='<tr>';
-        tr+= '<td>'+(i+1)+'</td>'+
-        '<td>'+ar[i].handle+'</td>'+
-             '<td>'+ar[i].firstName+" "+ar[i].lastName+'</td>'+
-             '<td>'+ar[i].rating+'</td>'+
-
-             '<td>'+ar[i].maxRating+'</td>';
-        tr+='</tr>';
-      }
-      table.innerHTML+=tr;
-
-  }
-})
-let arr=[];
-$.ajax({
-  method:'GET',
-  url:"https://codeforces.com/api/contest.list",
-  success:function(response){
-      arr=response.result;
-      console.log(response)
-      let table=document.getElementById("myTable");
-      table.innerHTML+="";
-      let tr="";
-      let count = Object.keys(response.result).length;        
-      for(let i=0;i<5;i++){
-        tr+='<tr>';
-        tr+='<td>'+(i+1)+'</td>'+
-        '<td>'+arr[i].name+'</td>'+
-        '<td>'+arr[i].type+'</td>';
-        tr+='</tr>';
-      }
-      table.innerHTML+=tr;
-    }
-  })
-
-function fun1(){
-  let str=document.getElementById("text1").value;
-  console.log(ar)
-  let flag=1;
-
-  while(c)
-  {
-    c--;
-    if(ar[c].handle==str)
-    {
-      let table=document.getElementById("tableid");
-      table.innerHTML+="";
-      let tr="";
-
-      tr+='<tr>';
-      tr+= '<th>'+"Name"+
-           '<th>'+"Friend of Count"+'</th>'+
-           '<th>'+"Rating"+'</th>'+
-           '<th>'+"Contribution"+'</th>'+
-           '<th>'+"Organization"+'</th>';
-      tr+='</tr>';
-        tr+='<tr>';
-        tr+= '<td>'+ar[c].firstName+" "+ar[c].lastName+'</td>'+
-             '<td>'+ar[c].friendOfCount+'</td>'+
-             '<td>'+ar[c].rating+'</td>'+
-             '<td>'+ar[c].contribution+'</td>'+
-             '<td>'+ar[c].organization+'</td>';
-        tr+='</tr>';
-      table.innerHTML+=tr;
-
-      flag--;
-      break;
-    }
-  }
-  if(flag===1){
-    document.getElementById("demo").innerHTML = "SORRY NOT EXSIT";
-
-  }
+body{
+    background-color: rgba(161, 248, 248, 0.745);
+    margin: 0px;
 }
-function contestrank(){
-  let v=5;
-  let str=document.getElementById("text2").value;
-  console.log(str)
-  while(v)
-  {
-   for(let i=0;i<Object.keys(arr).length;i++)
-   {
-     let ur="https://codeforces.com/api/contest.ratingChanges?contestId="+arr.contestId;
-     $.ajax({
-      method:'GET',
-      url:ur,
-      success:function(response){
-          data=response.result;
-          if(str==data.handle)
-          {
-            let table=document.getElementById("tablefor5contest");
-      table.innerHTML+="";
-      let tr="";
-
-      tr+='<tr>';
-      tr+= '<th>'+"Contest Name"+
-           '<th>'+"Rank"+'</th>';
-      tr+='</tr>';
-        tr+='<tr>';
-        tr+= '<td>'+data[i].contestName+'</td>'+
-             '<td>'+data[i].rank+'</td>';
-        tr+='</tr>';
-      table.innerHTML+=tr;
-
-            v--;          }
-      }})
-   }
+h1{
+    text-align: center;
+    font-weight: lighter;
+}
+div{
+    padding: 20px;
+    background-color: white;
+    margin: auto;
+    width: 600px;
+    border-radius: 10px;
+}
+img{
+    height: 37px;
+}
+table, td{
+    border: 1px solid rgb(92, 90, 90) ;
+}
+  table {
+    width: 100%;
+    border-collapse: collapse;
   }
 
+td,th{
+    padding: 10px;
+}
+th{
+    color: white;
+    background-color: #0f4c75;
+}
+tr:nth-child(even) {
+    background-color: #eee;
+}
+
+th:hover,tr:hover{
+    cursor: pointer;
+    transition: 5px;
+   background: rgb(3, 184, 255);
+}
+tr:nth-child(even):hover{
+    cursor: pointer;
+    transition: 5px;
+    background: rgb(3, 184, 255);
+    
+}
+td:hover{
+    box-shadow: 5px 5px 5px aqua;
+    transform:translateY(-2px);
+    transition: .25s;
+
+}
+@media (max-width: 600px){
+    div{
+        width: 100%;
+    }
+}
+.foot{
+    color:  white;
+    margin: 0%;
+    background-color: #0f4c75;
+    text-align: center;
+    padding: 20px;
+    margin: none;
+    width: 100%;
+    border-radius: 0px;
+}
+img.login{
+    margin-left: 220px;
+}
+button{
+    padding: 7px 15px;
+    background-color: rgb(3, 184, 255);
+    border-radius: 5px;
+    border-color: rgb(3, 184, 255);
+    
+}
+.loginbut{
+    margin-left: 55px;
+}
+button:hover{
+
+    box-shadow: 5px 5px 5px aqua;
+    transform:translateY(-2px);
+    transition: .25s;
+}
+input{
+    padding: 7px 15px;
+    border-radius: 5px;
+    margin: 5px;
+
+}
+footer{
+    margin: auto;
+    width: 200px;
+}
+#text1{
+    margin-left: 330px;
+}
+#text2{
+    margin-left: 180px;
 }
