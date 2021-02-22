@@ -12,6 +12,8 @@
 <body>
     <div class="main"><a href="https://codeforces.com/"><img src="img.png" alt="logo"></a>
         <a href="indexprofile.html"><img class="login" src="login.jpg" alt=""></a>
+
+
         <h1>Top rating</h1> 
         <h1 id="demo"></h1>
         <input type="text" id="text1" placeholder="handle">
@@ -29,6 +31,7 @@
                 <thead>
                     <tr>
                     <th>Rank</th>
+                    <th>Handle</th>
                     <th>Name</th>
                     <th>Rating </th>
                     <th>Max Rating</th>
@@ -49,7 +52,21 @@
                 </thead>
                 <tbody id="myTable"></tbody>
             </table>
+            <hr>
+            <br>
+            <h1> Search Contest Name & Rank</h1>
+            <input type="text" id="text2" placeholder="handle">
+            <button onclick="contestrank()">search</button>
+
+        
+            <table>
+                <tbody id="tablefor5contest"></tbody>
+            </table>
+        
+        
     </div>
+
+
     <div class="foot">
         <h3>Ankit Prasad</h3>
         <p>contact me- 8617648736</p>
